@@ -1,0 +1,49 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+WoWLauncher
+</name>
+</assembly>
+<members>
+<member name="P:Launcher.My.Resources.Resources.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:Launcher.My.Resources.Resources.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="T:Launcher.My.Resources.Resources">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member><member name="E:Launcher.ClassUnzip.Unzipstart">
+	<summary>Event welches vor dem Entpacken (Unzip) ausgeführt wird.</summary>
+	<remarks></remarks>
+</member><member name="E:Launcher.ClassUnzip.UnzipFinishd">
+	<summary>Event welches nach dem Entpacken (Unzip) ausgeführt wird.</summary>
+	<remarks></remarks>
+</member><member name="M:Launcher.ClassUnzip.#ctor(System.String,System.String)">
+	<summary>Neue Instanz der ClassUnzip Klasse.</summary>
+	<param name="file">Datei welche entpackt werden soll.</param>
+	<param name="towhere">Zielordner.</param>
+	<remarks></remarks>
+</member><member name="M:Launcher.ClassUnzip.UnzipNow">
+	<summary>Das Entpacken (Unzip) wird ausgeführt.</summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:Launcher.ClassUnzip.UnZipFile">
+	<summary>Gibt den Namen der gepackten Datei zurück, oder setzt diesen.</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:Launcher.ClassUnzip.UnzipTo">
+	<summary>Gibt den Zielort (entpacken) zurück, oder setzt diesen.</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

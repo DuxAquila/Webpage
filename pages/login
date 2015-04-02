@@ -1,0 +1,97 @@
+<?php
+$Ausgabe = '';
+$OutputMsg = '';
+if(isset($_POST['name'])) {
+	$Name=$_POST['name'];
+} else {
+	$Name = "";
+}
+if(isset($_POST['pass'])) {
+	$Pass = md5($_POST['pass']);
+} else {
+	//$Pass = "";
+	goto main;
+}
+$LastLogin = sprintf("UPDATE accounts SET LetzterLogin='%s' WHERE Name='%s'",
+           mysql_real_escape_string($Now),
+           mysql_real_escape_string($Name));
+
+if(!$Name){
+	$Ausgabe = "Sie haben kein Namen angegeben";
+}
+
+if(!$Pass) {
+	$Ausgabe = "Sie haben kein Passwort angegeben";
+}
+$Query = sprintf("SELECT * FROM accounts WHERE Name='%s'",
+			mysql_real_escape_string($Name));
+$result = mysql_query($Query);
+
+if(!$result) {
+    $Ausgabe = "Konnte Abfrage ($sql) nicht erfolgreich ausf&uuml;hren von DB: " . mysql_error();
+}
+
+if (mysql_num_rows($result) == 0) {
+	$Ausgabe = "FEHLER: Ihr Name oder Passwort ist nicht richtig!";
+}
+while ($row = mysql_fetch_array($result, MYSQL_BOTH)) {
+    $PassCheck = "$row[Passwd]";
+    $Gesperrt = "$row[gesperrt]";
+    $AccLevel = "$row[Accountlevel]";
+}
+mysql_free_result($result);
+if(!isset($PassCheck)) {
+	$PassCheck = "";
+}
+if($Pass == $PassCheck) {
+	$_SESSION['user']=$Name;
+	$_SESSION['Pass']=$PassCheck;
+	$_SESSION['Admin']=$AccLevel;
+	$_SESSION['Closed']=$Gesperrt;
+	$_SESSION['login']="True";
+	$SetLastLogin = mysql_query($LastLogin);
+	$Ausgabe = $_SESSION['user'].", du bist Angemeldet!".$_SESSION['login'];
+	
+} else {
+$Ausgabe = "FEHLER Login Fehlerhaft";
+}
+
+main:
+?>
+                      <h2 class="art-postheader"> Register </h2>
+                      <div class="art-postcontent">
+                        <!-- article-content -->
+			<p><?php echo $Ausgabe; ?></p	>
+			<form action="index.php?page=login" method="post">
+				<table width="75%" border="1" align="center" cellpadding="3" cellspacing="1">
+					<tr>
+						<td width="100%"><h5>Anmelden</h5><?php echo $OutputMsg;?></td>
+					</tr>
+					<tr>
+						<td width="100%"><label>Dein Name: <input type="text" name="name" size="25" value=""></label></td>
+					</tr>
+					<tr>
+						<td width="100%"><label>Password: <input type="password" name="pass" size="25" value=""></label></td>
+					</tr>
+					<tr>
+						<td width="100%"><input name="submit" type="submit" value="Anmelden" /></td>
+					</tr>
+				</table>
+			</form>
+                        </p>
+                        <div class="cleared"></div>
+                        <div class="art-content-layout overview-table">
+                          <div class="art-content-layout-row">
+                            <div class="art-layout-cell">
+                              <div class="overview-table-inner">
+                             </div>
+                            </div>
+                            <!-- end cell -->
+                            <div class="art-layout-cell">
+                              <div class="overview-table-inner"> </div>
+                            </div>
+                            <!-- end cell -->
+                            <!-- end cell --> </div>
+                          <!-- end row --> </div>
+                        <!-- end table -->
+                        <!-- /article-content --> </div>

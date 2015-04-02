@@ -1,0 +1,110 @@
+<?php
+$UserChange = $_SESSION['user'];
+if(isset($_POST['OldPass'])) {
+	$OldPass = md5($_POST['OldPass']);
+}
+if(isset($_POST['NewPass'])) {
+	$NewPass = md5($_POST['NewPass']);
+}
+if(isset($_POST['NewPass2'])) {
+	$NewPass2 = md5($_POST['NewPass2']);
+}
+
+
+if(empty($_POST['OldPass'])) {
+	$OutPut = "";
+} elseif($OldPass != $_SESSION['Pass']) {
+	$OutPut = "Das angegebene Kennwort war falsch";
+} elseif (empty($_POST['NewPass'])){
+	$OutPut = "Sie haben kein neues Kennwort angegeben";
+} elseif($_POST['OldPass'] == $_POST['NewPass']) {
+	$OutPut = "Das alte und das neue Kennwort sind gleich";
+} elseif ($_POST['NewPass'] != $_POST['NewPass2']) {
+	$OutPut = "Die Kennw&ouml;rter stimmen nicht &uuml;berein";
+} else {
+	$NewPass = md5($_POST['NewPass']);
+	
+	$PassChange = sprintf("UPDATE accounts SET Passwd='%s' WHERE Name='%s'",
+           		mysql_real_escape_string($NewPass),
+	           	mysql_real_escape_string($_SESSION['user']));
+	
+	$result = mysql_query($PassChange);
+
+	if(!$result) {
+    
+	echo "Konnte Abfrage ($PassChange ) nicht erfolgreich ausf&uuml;hren von DB: " . mysql_error() . "<br>" . $NewPass . "<br>" . $_SESSION['user'];
+	echo mysql_error();
+	
+	}  else {
+		$_SESSION['Pass']=$NewPass;
+		$OutPut = "Passwort erfolgreich ge&auml;ndert";
+	}
+mysql_free_result($result);
+}
+
+?>
+                    <div class="art-post-inner art-article">
+                      <h2 class="art-postheader"> Register </h2>
+                      <div class="art-postcontent">
+                        <!-- article-content -->
+     <h1><?php if (!empty($OutPut)) {
+		  echo $OutPut;
+	  } ?></h1>
+      <p>Dein Account</p>
+    <table width="100%" border="1" cellspacing="2" cellpadding="2">
+      <tr>
+        <td width="22%">Dein Name</td>
+        <td width="78%"><?php echo $_SESSION['user'];?></td>
+      </tr>
+      <tr>
+        <td>Dein Adminlevel</td>
+        <td><?php echo $_SESSION['Admin'];?></td>
+      </tr>
+      <tr>
+        <td>Gesperrt?</td>
+        <td><?php echo $_SESSION['Closed']; ?></td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <p>Passwort &auml;ndern</p>
+	<form action="user-settings.php" method="post" tarpost="_self" class="content">
+    <table width="100%" border="1" cellpadding="2" cellspacing="2" class="content">
+      <tr>
+        <td width="46%">Dein Aktuelles Passwort</td>
+        <td width="54%" align="center">
+          <input type="password" name="OldPass" size="50%" >
+        </td>
+      </tr>
+      <tr>
+        <td>Dein neues Passwort</td>
+        <td width="54%" align="center">
+          <input type="password" name="NewPass" size="50%" >
+        </td>
+      </tr>
+      <tr>
+        <td>Wiederhole dein neues Passwort</td>
+        <td width="54%" align="center">
+          <input type="password" name="NewPass2" size="50%" >
+        </td>
+    </table>
+    <input name="submit" type="submit" value="Absenden!" />
+    </form>
+	<p>&nbsp;</p>
+  </div>
+                        </p>
+                        <div class="cleared"></div>
+                        <div class="art-content-layout overview-table">
+                          <div class="art-content-layout-row">
+                            <div class="art-layout-cell">
+                              <div class="overview-table-inner">
+                             </div>
+                            </div>
+                            <!-- end cell -->
+                            <div class="art-layout-cell">
+                              <div class="overview-table-inner"> </div>
+                            </div>
+                            <!-- end cell -->
+                            <!-- end cell --> </div>
+                          <!-- end row --> </div>
+                        <!-- end table -->
+                        <!-- /article-content --> </div>

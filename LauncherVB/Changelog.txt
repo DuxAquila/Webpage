@@ -1,0 +1,72 @@
+Changelog
+
+	Version 2.0.4.5 !Comming Soon!
+	New
+		Addons:
+			Recount
+			Bagnon
+			Quartz
+			
+	Changes
+		Taskmenu
+			Dadurch das man die MsgBox zum Cache leeren entfernt hat, 
+			wurde ein Taskmenu eingebaut was das Cache leeren zu lässt
+			
+		BallonTips anstatt MsgBox 
+			Diese kommen überall da zum einsatz
+			wo man keine Auswahl treffen muss
+		
+		Drag&Drop Entfernt
+			Da der Launcher leider wegen der Update Funktionen
+			der Update.exe Administrative rechte benötigt
+			geht ab Windows Vista Drag&Drop nicht mehr.
+			
+			!Dieses liegt an Windows (ab Vista aufwärts) selbst.!
+			
+		
+
+	Version 2.0.4.4
+	Bug Fixxes
+	
+	New
+		Cache wird nun nicht mehr nur Automatisch geleert
+		Der Updater wurde verschönert und hat dazu auch eine Update Funktionen
+
+
+	Version 2.0.4.3
+	Bug Fixxes
+		MsgBox beim starten Entfernt
+		Der Addon Button geht nun beim wechseln von TBC auf WotLK
+
+	Neue Addons
+		AtlasLoot
+		Bartender4
+		Class Timer
+		VIPTeleport
+
+
+
+	Version 2.0.4.0
+		Cata Implimentiert
+
+
+		
+	Version 2.0.3.0
+		Teamspeak hinzugefügt
+		TS Serverliste kann angelegt werden
+		Vorbereitungen für Client TBC und Cata 
+
+
+
+	Version 2.0.2.0
+	Addons Hinzugefügt
+		Omen
+		WIM
+		MinimapButtonFrame
+		Postal
+		Titan Panel
+		Chatter
+
+	Neue Funktionen
+		Realms hinzufügbar
+		Alte Realmlist.wtf wird nun mit Count Gespeichert
