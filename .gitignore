@@ -3,3 +3,5 @@
 .directory
 config.php
 test/
+/.vs/slnx.sqlite
+/.vs
